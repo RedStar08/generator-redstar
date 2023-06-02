@@ -1,10 +1,10 @@
-var generators = require("yeoman-generator")
+const Generator = require("yeoman-generator")
 
-module.exports = generators.Base.extend({
+module.exports = class extends Generator {
   // The name `constructor` is important here
-  constructor: function () {
+  constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
-    generators.Base.apply(this, arguments)
+    super(args, opts)
 
     // Next, add your custom code
     this.option("coffee") // This method adds support for a `--coffee` flag
@@ -13,14 +13,14 @@ module.exports = generators.Base.extend({
     this.helperMethod1 = function () {
       this.log("instance method `helperMethod1` will not be auto run")
     }
-  },
+  }
 
   // High priorities
 
   // initializing - Your initialization methods (checking current project state, getting configs, etc)
   initializing() {
     this.log("`initializing` -> run")
-  },
+  }
   // prompting - Where you prompt users for options (where you’d call this.prompt())
   // prompting(options) {
   //   this.log("`prompting` -> run", options)
@@ -42,42 +42,42 @@ module.exports = generators.Base.extend({
     this.answers = answers
     this.log("app name", answers.name)
     this.log("cool feature", answers.cool)
-  },
+  }
   // configuring - Saving configurations and configure the project (creating .editorconfig files and other metadata files)
   configuring() {
     this.log("`configuring` -> run")
-  },
+  }
 
-  method1: function () {
+  method1() {
     this.log("method 1 just ran")
-  },
+  }
   // method name startWith `_` will not be called automatically
   _privite_method1() {
     this.log("`_privite_method1` will not be auto run")
-  },
-  method2: function () {
+  }
+  method2() {
     this.log("method 2 just ran")
-  },
+  }
   helper() {
     this.log("methods on the parent generator won't be called automatically")
-  },
+  }
 
   // Low priorities
 
   // writing - Where you write the generator specific files (routes, controllers, etc)
   writing() {
     this.log("`writing` -> run")
-  },
+  }
   // conflicts - Where conflicts are handled (used internally)
   conflicts() {
     this.log("`conflicts` -> run")
-  },
+  }
   // install - Where installations are run (npm, bower)
   install() {
     this.log("`install` -> run")
-  },
+  }
   // end - Called last, cleanup, say good bye, etc
   end() {
     this.log("`end` -> run")
-  },
-})
+  }
+}

@@ -1,18 +1,18 @@
-var generators = require("yeoman-generator")
+const Generator = require("yeoman-generator")
 
-const MyBase = generators.Base.extend({
+const MyBase = class extends Generator {
   // The name `constructor` is important here
-  constructor: function () {
+  constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
-    generators.Base.apply(this, arguments)
+    super(args, opts)
 
     // Next, add your custom code
     this.option("coffee") // This method adds support for a `--coffee` flag
-  },
+  }
   helper() {
     console.log("helper -> run")
-  },
-})
+  }
+}
 
 module.exports = class extends MyBase {
   exec() {
